@@ -1,5 +1,7 @@
 # Maputnik
 
+**NOTE:** This is just a test for a new CI environment.
+
 [![Build Status](https://circleci.com/gh/maputnik/editor/tree/master.svg?style=shield)][circleci]
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/anelbgv6jdb3qnh9/branch/master?svg=true)][appveyor]
 [![Dependency Status](https://david-dm.org/maputnik/editor.svg)][dm-prod]
