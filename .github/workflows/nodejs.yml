@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     container:
       image: node:13.6
@@ -24,10 +24,10 @@ jobs:
         ports:
         - 4444:4444
 
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [12.x]
+    # strategy:
+    #   matrix:
+    #     os: [ubuntu-latest]
+    #     node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -36,9 +36,9 @@ jobs:
     #   with:
     #     node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: npm run build
-    - run: npm run profiling-build
-    - run: npm run lint-js
-    - run: npm run lint-css
+    # - run: npm run build
+    # - run: npm run profiling-build
+    # - run: npm run lint-js
+    # - run: npm run lint-css
     - run: DOCKER_HOST=localhost npm test
     - run: ./node_modules/.bin/istanbul report --include /tmp/artifacts/coverage/coverage.json --dir /tmp/artifacts/coverage html lcov
