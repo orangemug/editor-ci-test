@@ -23,7 +23,7 @@ export class ApiStyleStore {
     .then((body) => {
       const styleIds = body;
       this.latestStyleId = styleIds[0]
-      this.notifyLocalChanges()
+      // this.notifyLocalChanges()
       cb(null)
     })
     .catch(function(e) {
