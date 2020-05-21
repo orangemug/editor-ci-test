@@ -147,7 +147,7 @@ exports.config = {
     onPrepare: function (config, capabilities) {
       return new Promise(function(resolve, reject) {
         var compiler = webpack(webpackConfig);
-        const serverHost = isDocker() ? "0.0.0.0" : "localhost";
+        const serverHost = "0.0.0.0";
 
         server = new WebpackDevServer(compiler, {
           host: serverHost,
