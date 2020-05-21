@@ -10,6 +10,7 @@ var server;
 var SCREENSHOT_PATH = artifacts.pathSync("screenshots");
 
 exports.config = {
+  path: '/wd/hub',
     //
     // ====================
     // Runner Configuration
