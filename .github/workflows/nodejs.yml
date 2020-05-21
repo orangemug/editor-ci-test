@@ -18,7 +18,7 @@ jobs:
       selenium:
         image: selenium/standalone-chrome:3.141.59
         ports:
-        - 80
+        - 4444
 
     strategy:
       matrix:
@@ -36,5 +36,5 @@ jobs:
     - run: npm run profiling-build
     - run: npm run lint-js
     - run: npm run lint-css
-    - run: DOCKER_HOST=selenium npm test
+    - run: DOCKER_HOST=localhost npm test
     - run: ./node_modules/.bin/istanbul report --include /tmp/artifacts/coverage/coverage.json --dir /tmp/artifacts/coverage html lcov
