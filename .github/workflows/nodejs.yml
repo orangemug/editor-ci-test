@@ -12,14 +12,17 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     services:
       selenium:
         image: selenium/standalone-chrome:3.141.59
+        ports:
+        - 80
 
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest]
         node-version: [12.x]
 
     steps:
