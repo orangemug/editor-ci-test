@@ -1,5 +1,6 @@
 var config      = require("../config/specs");
 var helper      = require("./helper");
+var fetch = require('node-fetch');
 
 
 describe('maputnik', function() {
@@ -15,7 +16,9 @@ describe('maputnik', function() {
     helper.stopGeoserver(done);
   });
 
-  beforeEach(function() {
+  beforeEach(async function() {
+    const res = await fetch(config.baseUrl);
+    console.log(">>>>>>>>>>>>>> FETCHING", await res.text());
     browser.url(config.baseUrl+"?debug&style="+helper.getStyleUrl([
       "geojson:example",
       "raster:raster"
