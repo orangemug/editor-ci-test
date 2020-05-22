@@ -10,6 +10,7 @@ var server;
 var SCREENSHOT_PATH = artifacts.pathSync("screenshots");
 
 exports.config = {
+  runner: 'local',
   path: '/wd/hub',
   specs: [
     './test/functional/index.js'
