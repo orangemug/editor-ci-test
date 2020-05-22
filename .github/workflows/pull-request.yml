@@ -16,7 +16,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        msg: "See demo at: <https://codesandbox.io/embed/github/$GITHUB_REPOSITORY/tree/$GITHUB_HEAD_REF?view=preview>"
+        msg: "See demo at: <https://codesandbox.io/embed/github/${{ github.repository }}/tree/${{ github.head_ref }}?view=preview>"
 
   # # build the editor
   # build:
