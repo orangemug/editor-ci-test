@@ -10,6 +10,31 @@ on:
     branches: [ master ]
 
 jobs:
+  crossbuild:
+    runs-on: ${{ matrix.os }}
+
+    container:
+      image: node:${{ matrix.node-version }}
+      options: --network-alias testhost
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [10]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - run: npm install
+    - run: npm run build
+
+
+
   build:
 
     runs-on: ubuntu-latest
