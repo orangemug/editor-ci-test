@@ -6,11 +6,11 @@ var geoServer = require("../geojson-server");
 var geoserver;
 
 module.exports = {
-  startGeoserver: function() {
-    geoserver = geoServer.listen(9002);
+  startGeoserver: function(done) {
+    geoserver = geoServer.listen(9002, "0.0.0.0", done);
   },
-  stopGeoserver: function() {
-    geoserver.close();
+  stopGeoserver: function(done) {
+    geoserver.close(done);
     geoserver = undefined;
   },
   getStyleUrl: function(styles) {

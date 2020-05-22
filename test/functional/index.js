@@ -4,13 +4,13 @@ var helper      = require("./helper");
 
 describe('maputnik', function() {
 
-  before(function() {
+  before(function(done) {
     require("./util/webdriverio-ext");
-    helper.startGeoserver();
+    helper.startGeoserver(done);
   });
 
-  after(function() {
-    helper.stopGeoserver();
+  after(function(done) {
+    helper.stopGeoserver(done);
   });
 
   beforeEach(function() {
