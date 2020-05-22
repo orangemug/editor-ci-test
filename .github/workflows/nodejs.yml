@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: node:13.6
+      image: node:10
       options: --network-alias testHost
 
     services:
@@ -31,14 +31,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    # - name: Use Node.js ${{ matrix.node-version }}
-    #   uses: actions/setup-node@v1
-    #   with:
-    #     node-version: ${{ matrix.node-version }}
     - run: npm install
-    # - run: npm run build
-    # - run: npm run profiling-build
-    # - run: npm run lint-js
-    # - run: npm run lint-css
+		- uses: actions/cache@v1
+			with:
+				path: ~/.npm
+				key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+				restore-keys: |
+				${{ runner.os }}-node-
     - run: DOCKER_HOST=localhost npm test
     - run: ./node_modules/.bin/istanbul report --include /tmp/artifacts/coverage/coverage.json --dir /tmp/artifacts/coverage html lcov
