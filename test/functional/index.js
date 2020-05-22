@@ -38,10 +38,10 @@ describe('maputnik', function() {
 
   // // ---- All the tests ----
   require("./history");
-  // require("./layers");
-  // require("./map");
-  // require("./modals");
-  // require("./screenshots");
+  require("./layers");
+  require("./map");
+  require("./modals");
+  require("./screenshots");
   // // ------------------------
 
 });
