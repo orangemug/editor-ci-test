@@ -10,8 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - run: echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
     - run: echo "GITHUB_HEAD_REF=$GITHUB_HEAD_REF"
-    - run: echo "GITHUB_REF=$GITHUB_REF"
+    - run: echo "Demo link <https://codesandbox.io/embed/github/${GITHUB_REPOSITORY}/tree/${GITHUB_HEAD_REF}?view=preview>"
 
   # # build the editor
   # build:
