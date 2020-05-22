@@ -38,5 +38,5 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    - run: DOCKER_HOST=localhost npm test
+    - run: DOCKER_HOST=selenium npm test
     - run: ./node_modules/.bin/istanbul report --include /tmp/artifacts/coverage/coverage.json --dir /tmp/artifacts/coverage html lcov
