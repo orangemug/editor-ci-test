@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: maputnik
 
 on:
   push:
@@ -11,13 +11,14 @@ on:
 
 jobs:
   build:
-    name: "build node@${{ matrix.node-version }} (${{ matrix.os }})"
+    name: "build/node@${{ matrix.node-version }} (${{ matrix.os }})"
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [10.x, 12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -36,11 +37,16 @@ jobs:
 
 
   test_selenium_standalone_chrome:
-    name: "test chrome standalone"
-    runs-on: ubuntu-latest
+    name: "test/standalone-chrome (${{ matrix.os }})"
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [10]
 
     container:
-      image: node:10
+      image: node:${{ matrix.node-version }}
       options: --network-alias testhost
 
     services:
