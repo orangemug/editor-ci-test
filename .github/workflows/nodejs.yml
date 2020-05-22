@@ -11,7 +11,7 @@ on:
 
 jobs:
   docker:
-    name: docker
+    name: build/docker
     runs-on: ${{ matrix.os }}
 
     strategy:
