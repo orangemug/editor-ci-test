@@ -28,6 +28,8 @@ exports.config = {
   reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
+    // Because we don't know how long the initial build will take...
+    timeout: 4*60*1000,
   },
   onPrepare: function (config, capabilities) {
     return new Promise(function(resolve, reject) {
