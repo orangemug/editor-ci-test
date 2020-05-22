@@ -10,13 +10,14 @@ on:
     branches: [ master ]
 
 jobs:
-  crossbuild:
+  build:
+    name: "build node@${{ matrix.node-version }} (${{ matrix.os }})"
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [10]
+        node-version: [10.x, 12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -34,8 +35,8 @@ jobs:
 
 
 
-  build:
-
+  test_selenium_standalone_chrome:
+    name: "test chrome standalone"
     runs-on: ubuntu-latest
 
     container:
@@ -47,11 +48,6 @@ jobs:
         image: selenium/standalone-chrome:3.141.59
         ports:
         - 4444:4444
-
-    # strategy:
-    #   matrix:
-    #     os: [ubuntu-latest]
-    #     node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
