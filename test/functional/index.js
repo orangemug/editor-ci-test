@@ -4,16 +4,16 @@ var helper      = require("./helper");
 
 describe('maputnik', function() {
 
-  // before(function(done) {
-  //   require("./util/webdriverio-ext");
-  //   console.log(">>>>>>>>>> STARTING GEOSERVER");
-  //   helper.startGeoserver(done);
-  // });
+  before(function(done) {
+    require("./util/webdriverio-ext");
+    console.log(">>>>>>>>>> STARTING GEOSERVER");
+    helper.startGeoserver(done);
+  });
 
-  // after(function(done) {
-  //   console.log(">>>>>>>>>> STOPPING GEOSERVER");
-  //   helper.stopGeoserver(done);
-  // });
+  after(function(done) {
+    console.log(">>>>>>>>>> STOPPING GEOSERVER");
+    helper.stopGeoserver(done);
+  });
 
   // beforeEach(function() {
   //   browser.url(config.baseUrl+"?debug&style="+helper.getStyleUrl([
