@@ -51,10 +51,8 @@ exports.config = {
     })
   },
   onComplete: function(exitCode) {
-    console.log("start onComplete", exitCode, server)
     return new Promise(function(resolve, reject) {
       server.close(function (err) {
-        console.log(">>>>>> onComplete", arguments);
         if (err) {
           reject(err)
         }
