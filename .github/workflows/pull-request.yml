@@ -12,7 +12,7 @@ jobs:
     steps:
     - run: echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
     - run: echo "GITHUB_HEAD_REF=$GITHUB_HEAD_REF"
-    - run: echo "See demo at: <https://codesandbox.io/embed/github/${GITHUB_REPOSITORY}/tree/${GITHUB_HEAD_REF}?view=preview>"
+    - run: echo "See demo at: <https://codesandbox.io/embed/github/$GITHUB_REPOSITORY/tree/$GITHUB_HEAD_REF?view=preview>"
     - uses: unsplash/comment-on-pr@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
