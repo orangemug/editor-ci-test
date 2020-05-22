@@ -13,10 +13,6 @@ jobs:
   crossbuild:
     runs-on: ${{ matrix.os }}
 
-    container:
-      image: node:${{ matrix.node-version }}
-      options: --network-alias testhost
-
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -24,6 +20,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
     - uses: actions/cache@v1
       with:
         path: ~/.npm
