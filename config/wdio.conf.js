@@ -38,6 +38,7 @@ exports.config = {
 
       server = new WebpackDevServer(compiler, {
         host: serverHost,
+        disableHostCheck: true,
         stats: {
           colors: true
         }
