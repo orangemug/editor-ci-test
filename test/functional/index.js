@@ -16,9 +16,9 @@ describe('maputnik', function() {
     helper.stopGeoserver(done);
   });
 
-  beforeEach(async function() {
-    const res = await fetch(config.baseUrl);
-    console.log(">>>>>>>>>>>>>> FETCHING", await res.text());
+  beforeEach(function() {
+    // const res = await fetch(config.baseUrl);
+    // console.log(">>>>>>>>>>>>>> FETCHING", await res.text());
     browser.url(config.baseUrl+"?debug&style="+helper.getStyleUrl([
       "geojson:example",
       "raster:raster"
@@ -37,11 +37,11 @@ describe('maputnik', function() {
   // -----------------------
 
   // // ---- All the tests ----
-  // require("./history");
+  require("./history");
   // require("./layers");
   // require("./map");
   // require("./modals");
-  require("./screenshots");
+  // require("./screenshots");
   // // ------------------------
 
 });
