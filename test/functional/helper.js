@@ -8,7 +8,7 @@ var geoserver = geoServer.listen(9002);
 module.exports = {
   getStyleUrl: function(styles) {
     var port = geoserver.address().port;
-    return "http://localhost:"+port+"/styles/empty/"+styles.join(",");
+    return "http://testhost:"+port+"/styles/empty/"+styles.join(",");
   },
   getGeoServerUrl: function(urlPath) {
     var port = geoserver.address().port;
