@@ -15,7 +15,7 @@ module.exports = {
   },
   getStyleUrl: function(styles) {
     var port = geoserver.address().port;
-    return "http://host.docker.internal:"+port+"/styles/empty/"+styles.join(",");
+    return "http://testhost:"+port+"/styles/empty/"+styles.join(",");
   },
   getGeoServerUrl: function(urlPath) {
     var port = geoserver.address().port;
