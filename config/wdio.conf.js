@@ -167,6 +167,7 @@ exports.config = {
       })
     },
     onComplete: function(exitCode) {
+      console.log(">>>>>> onComplete", exitCode);
       server.close()
     }
     //

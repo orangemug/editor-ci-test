@@ -12,7 +12,6 @@ describe('maputnik', function() {
 
   after(function(done) {
     console.log(">>>>>>>>>> STOPPING GEOSERVER");
-    browser.close();
     helper.stopGeoserver(done);
   });
 
