@@ -11,7 +11,6 @@ var SCREENSHOT_PATH = artifacts.pathSync("screenshots");
 
 exports.config = {
   path: '/wd/hub',
-  runner: 'local',
   specs: [
     './test/functional/index.js'
   ],
@@ -24,16 +23,10 @@ exports.config = {
   bail: 0,
   screenshotPath: SCREENSHOT_PATH,
   hostname: process.env.DOCKER_HOST || "0.0.0.0",
-  baseUrl: 'http://localhost',
-  waitforTimeout: 10000,
-  connectionRetryTimeout: 90000,
-  connectionRetryCount: 3,
   framework: 'mocha',
   reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
-    // Because we don't know how long the initial build will take...
-    timeout: 4*60*1000
   },
   onPrepare: function (config, capabilities) {
     return new Promise(function(resolve, reject) {
@@ -58,7 +51,17 @@ exports.config = {
     })
   },
   onComplete: function(exitCode) {
-    console.log(">>>>>> onComplete", exitCode);
-    server.close(console.log)
+    console.log("start onComplete", exitCode, server)
+    return new Promise(function(resolve, reject) {
+      server.close(function (err) {
+        console.log(">>>>>> onComplete", arguments);
+        if (err) {
+          reject(err)
+        }
+        else {
+          resolve();
+        }
+      })
+    });
   }
 }
