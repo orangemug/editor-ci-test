@@ -39,9 +39,9 @@ jobs:
           ${{ runner.os }}-node-
     - run: npm install
     - run: DOCKER_HOST=selenium npm test
-    - run: ./node_modules/.bin/istanbul report --include artifacts/coverage/coverage.json --dir artifacts/coverage html lcov
+    - run: ./node_modules/.bin/istanbul report --include build/artifacts/coverage/coverage.json --dir build/artifacts/coverage html lcov
     - uses: actions/upload-artifact@v1
       with:
         name: coverage
-        path: artifacts/coverage
+        path: build/artifacts/coverage
 
