@@ -6,10 +6,12 @@ describe('maputnik', function() {
 
   before(function(done) {
     require("./util/webdriverio-ext");
+    console.log(">>>>>>>>>> STARTING GEOSERVER");
     helper.startGeoserver(done);
   });
 
   after(function(done) {
+    console.log(">>>>>>>>>> STOPPING GEOSERVER");
     helper.stopGeoserver(done);
   });
 
