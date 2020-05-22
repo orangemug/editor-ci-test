@@ -19,7 +19,7 @@ module.exports = {
   },
   getGeoServerUrl: function(urlPath) {
     var port = geoserver.address().port;
-    return "http://localhost:"+port+"/"+urlPath;
+    return "http://testhost:"+port+"/"+urlPath;
   },
   getStyleStore: function(browser) {
     var result = browser.executeAsync(function(done) {
