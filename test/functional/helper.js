@@ -3,9 +3,16 @@ var uuid = require('uuid/v1');
 var geoServer = require("../geojson-server");
 
 
-var geoserver = geoServer.listen(9002);
+var geoserver;
 
 module.exports = {
+  startGeoserver: function() {
+    geoserver = geoServer.listen(9002);
+  },
+  stopGeoserver: function() {
+    geoserver.close();
+    geoserver = undefined;
+  },
   getStyleUrl: function(styles) {
     var port = geoserver.address().port;
     return "http://testhost:"+port+"/styles/empty/"+styles.join(",");
