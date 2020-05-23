@@ -1,27 +1,48 @@
-name: pull-request
+name: ci
 
 on:
   pull_request:
     branches: [ master ]
+  push:
+    branches: [ master ]
 
 jobs:
-  comment:
-    name: meta/comment
+
+  # post a comment linking to codesandbox with the current branch
+  meta-demo-comment:
+    name: meta/demo-comment
     runs-on: ubuntu-latest
 
+    if: ${{ github.event == "pull_request" }}
+
     steps:
-    - run: echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
-    - run: echo "GITHUB_HEAD_REF=$GITHUB_HEAD_REF"
     - uses: unsplash/comment-on-pr@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         msg: "Demo: <https://codesandbox.io/embed/github/${{ github.repository }}/tree/${{ github.head_ref }}?view=preview>"
 
+  build-docker:
+    name: build/docker
+    runs-on: ${{ matrix.os }}
+
+    if: ${{ github.event == "push" || github.event == "pull_request" }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: docker build -t docker.pkg.github.com/orangemug/editor-ci-test/editor:master .
+
   # build the editor
-  build:
+  build-node:
     name: "build/node@${{ matrix.node-version }} (${{ matrix.os }})"
     runs-on: ${{ matrix.os }}
+
+    if: ${{ github.event == "push" || github.event == "pull_request" }}
 
     strategy:
       fail-fast: false
@@ -48,7 +69,10 @@ jobs:
     name: "test/standalone-chrome (${{ matrix.os }})"
     runs-on: ${{ matrix.os }}
 
+    if: ${{ github.event == "push" || github.event == "pull_request" }}
+
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest]
         node-version: [10]
