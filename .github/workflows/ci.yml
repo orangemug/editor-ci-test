@@ -13,7 +13,7 @@ jobs:
     name: meta/demo-comment
     runs-on: ubuntu-latest
 
-    if: ${{ github.event == "pull_request" }}
+    if: ${{ github.event == 'pull_request' }}
 
     steps:
     - uses: unsplash/comment-on-pr@master
@@ -26,7 +26,7 @@ jobs:
     name: build/docker
     runs-on: ${{ matrix.os }}
 
-    if: ${{ github.event == "push" || github.event == "pull_request" }}
+    if: ${{ github.event == 'push' || github.event == 'pull_request' }}
 
     strategy:
       fail-fast: false
@@ -42,7 +42,7 @@ jobs:
     name: "build/node@${{ matrix.node-version }} (${{ matrix.os }})"
     runs-on: ${{ matrix.os }}
 
-    if: ${{ github.event == "push" || github.event == "pull_request" }}
+    if: ${{ github.event == 'push' || github.event == 'pull_request' }}
 
     strategy:
       fail-fast: false
@@ -69,7 +69,7 @@ jobs:
     name: "test/standalone-chrome (${{ matrix.os }})"
     runs-on: ${{ matrix.os }}
 
-    if: ${{ github.event == "push" || github.event == "pull_request" }}
+    if: ${{ github.event == 'push' || github.event == 'pull_request' }}
 
     strategy:
       fail-fast: false
