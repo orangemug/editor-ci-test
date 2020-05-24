@@ -1,6 +1,7 @@
 # Maputnik
 
-**NOTE:** This is just a test for a new CI environment.
+**NOTE:** This is just a test for a new CI environment. Please ignore this PR. See <https://github.com/orangemug/editor-ci-test/pull/2> for new planned features.
+
 
 [![Build Status](https://circleci.com/gh/maputnik/editor/tree/master.svg?style=shield)][circleci]
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/anelbgv6jdb3qnh9/branch/master?svg=true)][appveyor]
