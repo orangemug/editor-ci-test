@@ -64,6 +64,44 @@ jobs:
     - run: npm install
     - run: npm run build
 
+
+  build-artifacts:
+    name: "build/artifacts (${{ matrix.os }})"
+    runs-on: ${{ matrix.os }}
+
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - run: npm install
+    - run: npm run build
+    - name: artifacts/editor
+      uses: actions/upload-artifact@v1
+      with:
+        name: editor
+        path: build/artifacts/build
+    - run: npm run profiling-build
+    - name: artifacts/editor-profiling
+      uses: actions/upload-artifact@v1
+      with:
+        name: editor-profiling
+        path: build/artifacts/profiling
+
   # build and test the editor in standalone-chrome
   test_selenium_standalone_chrome:
     name: "test/standalone-chrome (${{ matrix.os }})"
@@ -96,10 +134,16 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
     - run: npm install
-    - run: DOCKER_HOST=selenium npm test
+    - run: TEST_NETWORK=testhost DOCKER_HOST=selenium npm test
     - run: ./node_modules/.bin/istanbul report --include build/artifacts/coverage/coverage.json --dir build/artifacts/coverage html lcov
-    - uses: actions/upload-artifact@v1
+    - name: artifacts/coverage
+      uses: actions/upload-artifact@v1
       with:
         name: coverage
         path: build/artifacts/coverage
+    - name: artifacts/screenshots
+      uses: actions/upload-artifact@v1
+      with:
+        name: screenshots
+        path: build/artifacts/screenshots
 
