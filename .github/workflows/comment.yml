@@ -1,8 +1,8 @@
 name: test-check_suite
 
 on:
-  check_suite:
-    types: [requested]
+  issue_comment:
+    types: [created]
 
 jobs:
 
