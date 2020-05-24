@@ -15,7 +15,7 @@ afterEach(function() {
   });
 
   if (results) {
-    coverage.merge(results.value);
+    coverage.merge(results);
   }
 })
 

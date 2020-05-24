@@ -2,7 +2,7 @@ var wd = require("../wd-helper");
 var uuid = require('uuid/v1');
 var geoServer = require("../geojson-server");
 
-
+var testNetwork = process.env.TEST_NETWORK || "localhost";
 var geoserver;
 
 module.exports = {
@@ -15,11 +15,11 @@ module.exports = {
   },
   getStyleUrl: function(styles) {
     var port = geoserver.address().port;
-    return "http://testhost:"+port+"/styles/empty/"+styles.join(",");
+    return "http://"+testNetwork+":"+port+"/styles/empty/"+styles.join(",");
   },
   getGeoServerUrl: function(urlPath) {
     var port = geoserver.address().port;
-    return "http://testhost:"+port+"/"+urlPath;
+    return "http://"+testNetwork+":"+port+"/"+urlPath;
   },
   getStyleStore: function(browser) {
     var result = browser.executeAsync(function(done) {
