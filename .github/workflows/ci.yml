@@ -94,13 +94,13 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: editor
-        path: build/artifacts/build
+        path: build/build
     - run: npm run profiling-build
     - name: artifacts/editor-profiling
       uses: actions/upload-artifact@v1
       with:
         name: editor-profiling
-        path: build/artifacts/profiling
+        path: build/profiling
 
   # build and test the editor in standalone-chrome
   test_selenium_standalone_chrome:
@@ -135,15 +135,15 @@ jobs:
           ${{ runner.os }}-node-
     - run: npm install
     - run: TEST_NETWORK=testhost DOCKER_HOST=selenium npm test
-    - run: ./node_modules/.bin/istanbul report --include build/artifacts/coverage/coverage.json --dir build/artifacts/coverage html lcov
+    - run: ./node_modules/.bin/istanbul report --include build/coverage/coverage.json --dir build/coverage html lcov
     - name: artifacts/coverage
       uses: actions/upload-artifact@v1
       with:
         name: coverage
-        path: build/artifacts/coverage
+        path: build/coverage
     - name: artifacts/screenshots
       uses: actions/upload-artifact@v1
       with:
         name: screenshots
-        path: build/artifacts/screenshots
+        path: build/screenshots
 
