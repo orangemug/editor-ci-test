@@ -20,10 +20,6 @@ exports.config = {
     {
       maxInstances: 5,
       browserName: (process.env.BROWSER || 'chrome'),
-    },
-    {
-      maxInstances: 5,
-      browserName: 'firefox',
     }
   ],
   logLevel: 'info',
