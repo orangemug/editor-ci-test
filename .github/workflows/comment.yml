@@ -1,0 +1,15 @@
+name: test-check_suite
+
+on:
+  check_suite:
+    types: [requested]
+
+jobs:
+
+  # post a comment linking to codesandbox with the current branch
+  meta-demo-comment:
+    name: testing
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: echo "is running"
