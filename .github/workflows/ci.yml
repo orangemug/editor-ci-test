@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.event_name == 'pull_request' }}
 
     steps:
-    - run: echo "::debug file=README.md,line=1::Testing annotations"
+    - run: echo "::warning file=README.md,line=1::Testing annotations"
     - uses: unsplash/comment-on-pr@v1.2.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
