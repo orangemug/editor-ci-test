@@ -179,7 +179,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
     - run: npm install
-    - run: TEST_NETWORK=testhost DOCKER_HOST=selenium npm test
+    - run: BROWSER=firefox TEST_NETWORK=testhost DOCKER_HOST=selenium npm test
     - name: artifacts/screenshots
       uses: actions/upload-artifact@v1
       with:

@@ -19,7 +19,7 @@ exports.config = {
   capabilities: [
     {
       maxInstances: 5,
-      browserName: 'chrome',
+      browserName: (process.env.BROWSER || 'chrome'),
     },
     {
       maxInstances: 5,
