@@ -2,7 +2,7 @@ name: test-check_suite
 
 on:
   check_suite:
-    types: [requested]
+    types: [created]
 
 jobs:
 
