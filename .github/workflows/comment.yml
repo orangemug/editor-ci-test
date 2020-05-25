@@ -1,15 +1,24 @@
-name: test-check_suite
+name: meta
 
 on:
-  issue_comment:
-    types: [created]
+  pull_request:
+    types:
+      - opened
+  check_suite:
+    types:
+      - completed
 
 jobs:
 
   # post a comment linking to codesandbox with the current branch
   meta-demo-comment:
-    name: testing
+    name: meta/demo-comment
     runs-on: ubuntu-latest
 
     steps:
-    - run: echo "is running"
+    - run: echo "github.event_name=${{ github.event_name }}"
+    - uses: unsplash/comment-on-pr@v1.2.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        msg: "Demo: <https://codesandbox.io/embed/github/${{ github.repository }}/tree/${{ github.head_ref }}?view=preview>"
