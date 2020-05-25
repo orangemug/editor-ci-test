@@ -1,7 +1,7 @@
 # Maputnik
 
 
-**NOTE:** This is just a test for a new CI environment. Please ignore this PR. See <https://github.com/orangemug/editor-ci-test/pull/2> for new planned features...
+**NOTE:** This is just a test for a new CI environment. Please ignore this PR. See <https://github.com/orangemug/editor-ci-test/pull/2> for new planned features... testing
 
 **NOTE:** Another test
 
