@@ -3,7 +3,12 @@ name: meta
 on:
   pull_request:
     types:
+      - synchronize
       - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
   check_suite:
     types:
       - completed
