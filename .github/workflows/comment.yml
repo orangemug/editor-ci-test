@@ -1,6 +1,7 @@
 name: meta
 
 on:
+  status:
   pull_request:
     types:
       - synchronize
